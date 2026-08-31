@@ -1,17 +1,27 @@
 - name: variable preference
   hosts: local
   connection: local
-  vars:
-    NAME: "Ansible from PLAY"
-  vars_files:
-  - course.yaml
-  vars_prompt:
-  - name: NAME
-    prompt: please enter name
-    private: false
+  # vars:
+  #   NAME: "Ansible from PLAY"
+  # vars_files:
+  # - course.yaml
+  # vars_prompt:
+  # - name: NAME
+  #   prompt: please enter name
+  #   private: false
   tasks:
   - name: print name
-    vars:
-      NAME: "Ansible from TASK"
+    # vars:
+    #   NAME: "Ansible from TASK"
     ansible.builtin.debug:
       msg: "Hi {{ NAME }}"
+
+
+
+
+# 1st preference will args
+# 2nd will be task
+# 3rd will be file if vars inside tasks is commented
+# 4th will be prompt if vars inside tasks and vars_files is commented
+# 5th will be play level variable if tasks, varsfile, vars_prompt is commented
+# 6th will be inventory variable if tasks,varsfile, vars_prompt, play level is commented
